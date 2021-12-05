@@ -1,4 +1,4 @@
-# BMN: Boundary-Matching Network
+# Ablation Studies on Boundary-Matching Network for Temporal Action Localization
 
 A pytorch-version implementation codes of paper:
  "BMN: Boundary-Matching Network for Temporal Action Proposal Generation",
@@ -7,67 +7,54 @@ A pytorch-version implementation codes of paper:
 [[Arxiv Preprint]](https://arxiv.org/abs/1907.09702)
 
 ## Result
-__Update(2020-06-19)__:  improved the pefermance. The new model can be download [here](https://pan.baidu.com/s/1ctIV83-Oz9P3jWD1iYnR2g). 提取码：nk3h
-
-__Update(2019-10-17)__: 
-I update the pytorch BMN codebase according to PaddlePaddle code provided by Baidu officially.
-Now my codebase get very close results to the paper. Actually my results are slightly __higher__ 
-than the original paper. The model can be download [here](https://pan.baidu.com/s/1Fm4niHixw53cdhuuhf5baA).
 
 
-| AN     | Recall |
-| ------ | ------ |
-| AR@1   | 33.6%  |
-| AR@5   | 49.9%  |
-| AR@10  | 57.1%  |
-| AR@100 | 75.5%  |
-| AUC    | 67.7   |
-
-
-![](./img/evaluation_result.jpg)
+| AN     | BMN Results  | Baseline Reproduction   | Improvements over Baseline   |
+| ------ | ------ 		| ------ 		| ------ 		|
+| AR@1   | 33.6%  		| 33.6%  		| 33.4%  		|
+| AR@5   | 49.9%  		| 49.1%  		| 49.8%  		|
+| AR@10  | 57.1%  		| 56.5%  		| 57.3%  		|
+| AR@100 | 75.5%  		| 75.2%  		| 75.4%  		|
+| AUC    | 67.7%   		| 66.9%   		| 67.5%   		|
 
 ## Prerequisites
 
-These code is  implemented in Pytorch 0.4.1 + Python3 . 
+These code is  implemented in Pytorch 1.9.1 + Python 3.8.10. 
 
 
 ## Download Datasets
 
- The author rescaled the feature length of all videos 
-to same length 100, and he provided the rescaled feature at 
- [here](https://github.com/wzmsltw/BSN-boundary-sensitive-network) .
-
+The two-stream dataset of ActivityNet can be downloaded
+ [here](https://paddlemodels.bj.bcebos.com/video_detection/bmn_feat.tar.gz). Which is taken from [this](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/en/dataset/ActivityNet.md) repository. The two-stream dataset should be extracted into `data/activitynet_feature_cuhk/fix_feat_100` for the code to train.
 
 ## Training and Testing  of BMN
 
-All configurations of BMN are saved in opts.py, where you can modify training and model parameter.
+All configurations of project are saved in opts.py, where you can modify training, model, and inference parameter.
 
-
-
-1. To train the BMN:
+1. To train the model:
 ```
-python main.py --mode train
+python main.py --mode train --experiment_name vanilla_model
 ```
+`experiment_name` is simply the name of this experiment. It should be noted that additional parameters would be necessary to apply necessary data augmentation. These parameters include `reverse`, `max_shift`, `shift_prob`, `s_and_e`.
 
-2. To get the inference proposal of the validation videos and evaluate the proposals with recall and AUC:
-```
-python main.py --mode inference
-```
-
-Of course, you can complete all the process above in one line: 
+2. To get the inference proposal of the validation videos and evaluate the proposals with recall and AUC in a normal model, simply run the following code.
 
 ```
-sh bmn.sh
+python main.py --mode inference --forward_model vanilla_model
 ```
 
+However, to run inference proposal on the ensemble model, run the following code.
 
+```
+python main.py --mode inference --forward_model vanilla_model --reverse_model reverse_model --ensemble 1
+```
+
+## Group name change
+We would like to note that our group name changed from group 9 to group 2 during the semester. Therefore, some documentation may indicate this discrepency.
 
 ## Reference
 
-This implementation largely borrows from [BSN](https://github.com/wzmsltw/BSN-boundary-sensitive-network) by [Tianwei Lin](https://github.com/wzmsltw).
+This implementation largely borrows from [BMN](https://github.com/JJBOY/BMN-Boundary-Matching-Network) by [JJBOY](https://github.com/JJBOY)
 
-code:[BSN](https://github.com/wzmsltw/BSN-boundary-sensitive-network)
-
-paper:[BMN: Boundary-Matching Network for Temporal Action Proposal Generation](https://arxiv.org/abs/1907.09702)
-
+Base paper:[BMN: Boundary-Matching Network for Temporal Action Proposal Generation](https://arxiv.org/abs/1907.09702)
 
