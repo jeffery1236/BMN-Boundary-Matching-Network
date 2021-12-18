@@ -6,20 +6,31 @@ A pytorch-version implementation codes of paper:
 
 [[Arxiv Preprint]](https://arxiv.org/abs/1907.09702)
 
-## Result
+## Results
+This project implements and does ablation studies with the following techniques: 
+1. Temporal Shifts for Data Augmentation and Robustness
+2. Global Information using a Squeeze and Excite module
+3. Ensembling with a model trained on reversed videos
 
+The following table presents results from our vanilla reproduction of the baseline, as well as the best results with all the above three component modules turned on. Ablation results for the component modules follow in the table after it.
 
+<!-- 
 | AN     | BMN Results  | Baseline Reproduction   | Improvements over Baseline   |
 | ------ | ------ 		| ------ 		| ------ 		|
-| AR@1   | 33.6%  		| 33.6%  		| 33.4%  		|
-| AR@5   | 49.9%  		| 49.1%  		| 49.8%  		|
-| AR@10  | 57.1%  		| 56.5%  		| 57.3%  		|
-| AR@100 | 75.5%  		| 75.2%  		| 75.4%  		|
-| AUC    | 67.7%   		| 66.9%   		| 67.5%   		|
+| AR@1   | 33.6%  		| 33.5%  		| 33.4%  		|
+| AR@5   | 49.9%  		| 48.0%  		| 49.8%  		|
+| AR@10  | 57.1%  		| 55.1%  		| 57.3%  		|
+| AR@100 | 75.5%  		| 75.1%  		| 75.4%  		|
+| AUC    | 67.5%   	| 66.6%  		| 67.5%    | -->
+![image](https://user-images.githubusercontent.com/94396277/146657631-27a9a62d-618f-4002-af03-fbc2e0b93b78.png)
+
+## Ablation Study Results
+The results of the ablation studies are as follows: 
+![image](https://user-images.githubusercontent.com/94396277/146657535-9434138a-92e5-4532-b372-4eaf22b976e7.png)
 
 ## Prerequisites
 
-These code is  implemented in Pytorch 1.9.1 + Python 3.8.10. 
+These code is implemented in Pytorch 1.9.1 + Python 3.8.10. 
 
 
 ## Download Datasets
