@@ -1,10 +1,14 @@
 # Ablation Studies on Boundary-Matching Network for Temporal Action Localization
 
-A pytorch-version implementation codes of paper:
- "BMN: Boundary-Matching Network for Temporal Action Proposal Generation",
-  which is accepted in ICCV 2019. 
+Pytorch implementation of the paper: "BMN: Boundary-Matching Network for Temporal Action Proposal Generation", along with three new modules to address overfitting issues found in the baseline model, and ablation studies for each module.
 
 [[Arxiv Preprint]](https://arxiv.org/abs/1907.09702)
+
+## Contributors
+- Ben Sukboontip (bsukboon@cs.cmu.edu)
+- Jeffery Cao (jeffery2@cs.cmu.edu)
+- Prasoon Varshney (pvarshne@cs.cmu.edu)
+- Su Park (suminpar@cs.cmu.edu)
 
 ## Results
 This project implements and does ablation studies with the following techniques: 
