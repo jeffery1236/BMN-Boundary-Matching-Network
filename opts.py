@@ -45,6 +45,12 @@ def parse_opt():
         '--step_gamma',
         type=float,
         default=0.5)  # 0.1
+    parser.add_argument( # Patience for ReduceLROnPlateau scheduler
+        '--patience',
+        type=int,
+        default=2)
+
+    # Temporal Shift config vars
     parser.add_argument(
         '--shift_prob',
         type=float,
@@ -52,11 +58,7 @@ def parse_opt():
     parser.add_argument(
         '--max_shift',
         type=int,
-        default=0) 
-    parser.add_argument(
-        '--patience',
-        type=int,
-        default=2)  
+        default=0)
 
     # Random seed for reproducibility
     parser.add_argument(
@@ -130,6 +132,8 @@ def parse_opt():
         type=str,
         default='debug'
     )
+
+    # Ensemble config vars
     parser.add_argument(
         '--forward_model',
         type=str,
@@ -152,6 +156,8 @@ def parse_opt():
         type=int,
         default=0
     )
+
+    # Squeeze and Excitation config vars
     parser.add_argument(
         '--s_and_e',
         type=bool,
